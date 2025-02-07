@@ -1,0 +1,16 @@
+    1  cd cs131
+    2  mkdir ws2
+    3  cd ws2
+    4  echo $HOME > ws2.txt
+    5  id >> ws2.txt
+    6  ls /proc | grep mem >> ws2.txt
+    7  ls /proc | grep cpu >> ws2.txt
+    8  head -n 10 /proc/meminfo >> ws2.txt
+    9  head -n 10 /proc/cpuinfo >> ws2.txt
+   10  tail -n 5 /proc/cpuinfo >> ws2.txt
+   11  grep -c "processor" /proc/cpuinfo
+   12  ls /etc | grep release >> ws2.txt
+   13  cat /etc/os-release >> ws2.txt
+   14  history > cmds.log
+   15  vim ws2.txt
+   16  vim cmds.log

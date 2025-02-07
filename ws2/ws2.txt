@@ -1,0 +1,99 @@
+Worksheet 2
+Tanmay Singh
+
+Task 2
+Output:
+/home/tanmay_singh
+
+command used:
+echo $HOME > ws2.txt
+
+Task 3
+Output:
+uid=1001(tanmay_singh) gid=1002(tanmay_singh) groups=1002(tanmay_singh),4(adm),20(dialout),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),118(netdev),119(lxd),1000(ubuntu),1001(google-sudoers)
+
+So my UID is 1001 and the group names are listed above
+
+command used:
+is >> ws2.txt
+
+Task 4
+combined output:
+iomem
+meminfo
+cpuinfo
+
+(All the memory and cpu files on my server)
+
+command used:
+ls /proc | grep mem >> ws2.txt
+ls /proc | grep cpu >> ws2.txt
+
+Task 5
+Output:
+MemTotal:         976904 kB
+MemFree:          455596 kB
+MemAvailable:     616052 kB
+Buffers:            7096 kB
+Cached:           271056 kB
+SwapCached:            0 kB
+Active:           142068 kB
+Inactive:         199972 kB
+Active(anon):        896 kB
+Inactive(anon):    72156 kB
+
+so I have a total memory of 976904 kb
+
+command used:
+head -n 10 /proc/meminfo >> ws2.txt
+
+Task 6
+Combined output:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 79
+model name	: Intel(R) Xeon(R) CPU @ 2.20GHz
+stepping	: 0
+microcode	: 0xffffffff
+cpu MHz		: 2199.998
+cache size	: 56320 KB
+physical id	: 0
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+to find the number of processors I ran another command and got the output:
+2
+
+so I have two processors, The processor Architecture name is Intel (R) Xeon (R) x86_64 bit 
+architecture. the processor speed is 2.20 GHz
+
+commands used:
+head -n 10 /proc/meminfo >> ws2.txt
+grep -c "processor" /proc/cpuinfo >> ws2.txt
+
+Task 7
+Output part 1: 
+lsb-release
+os-release
+
+Output part 2:
+NAME="Ubuntu"
+VERSION="20.04.6 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.6 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+
+So first I ran a command to find the files which contain the word "release" and then 
+found the os-release file which contains the OS version details.
+
+The OS name is Ubuntu and the version is 20.04.6
