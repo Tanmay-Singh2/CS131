@@ -1,0 +1,13 @@
+    1  ls
+    2  sudo apt install python3-pip
+    3  pip install gdown
+    4  /home/tanmay_singh/.local/bin/gdown 1fc3saVu2GtG3Rft3zI-VOOsZhaqcSyn
+    5  cd cs131
+    6  mkdir ws3
+    7  cd ws3 
+    8  grep '2019-01-02' ~/2019-01-h1.csv | cut -d ',' -f8 | sort | uniq -c | sort -nr | head -n 3 > ws3.txt
+    9  vim ws3.txt
+   10  grep '2019-01-10' ~/2019-01-h1.csv | cut -d ',' -f8 | sort | uniq -c | sort -nr | head -n 3 >> ws3.txt
+   11  history > cmds.log
+   12  vim cmds.log
+

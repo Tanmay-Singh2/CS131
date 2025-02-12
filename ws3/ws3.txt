@@ -1,0 +1,39 @@
+Worksheet 3
+Tanmay Singh
+CS 131
+
+Task 1
+
+command used: 
+
+grep '2019-01-02' ~/2019-01-h1.csv | cut -d ',' -f8 | sort | uniq -c | sort -nr | head -n 3 >> ws3.txt   
+
+Here is the output for the top 3 pickup locations for January 2nd, 2019:
+
+  Trips Location ID
+   
+   8605 161.0
+   8407 132.0
+   8163 186.0
+
+(The first column here represents the number of trips and the second column
+ represents the Location ID)
+
+Task  2
+
+Command used:
+grep '2019-01-10' ~/2019-01-h1.csv | cut -d ',' -f8 | sort | uniq -c | sort -nr | head -n 3 >> ws3.txt   
+
+
+Here is the output for the top 3 pickup locations for January 2nd, 2019:
+
+  Trips Location ID
+
+  13738 237.0
+  13519 236.0
+  12997 161.0
+
+
+(The first column here represents the number of trips and the second column
+ represents the Location ID)
+
