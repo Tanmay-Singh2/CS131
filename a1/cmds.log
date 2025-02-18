@@ -1,0 +1,25 @@
+    1  ls
+    2  vim .bashrc
+    3  source ~/.bashrc
+    4  cd cs131
+    5  mkdir a1
+    6  alias l > cs131/a1/a1.txt
+    7  l >> cs131/a1/a1.txt
+    8  alias w >> cs131/a1/a1.txt
+    9  w >> cs131/a1/a1.txt
+   10  cd cs131
+   11  cd a1
+   12  mkdir FARE 
+   13  grep ',151.0,239.0,' ~/2019-01-h1.csv | cut -d',' -f11 > FARE/151.0-239.0.txt
+   14  grep ',229.0,7.0,' ~/2019-01-h1.csv | cut -d',' -f11 > FARE/229.0-7.0.txt
+   15  total=$(paste -sd+ 151.0-239.0.txt | bc -l)
+   16  count=$(wc -l < 151.0-239.0.txt)
+   12  echo "scale=2; $total / $count" | bc -l >> ~/cs131/a1/a1.txt
+   16  total=$(paste -sd+ 229.0-7.0.txt | bc -l)
+   17  count=$(wc -l < 229.0-7.0.txt)
+   18  echo "scale=2; $total / $count" | bc -l >> ~/cs131/a1/a1.txt
+   21  grep '2019-01-10' ~/2019-01-h1.csv | cut -d',' -f17 | sort -nr | head -1 >> a1.txt
+   23  grep -E ',[3-9]|,10,|,11,|,12,' ~/2019-01-h1.csv | cut -d',' -f9 | sort | uniq -c | sort -nr | head -10 >> a1.txt
+   24  vim a1.txt
+   25  history > cmds.log
+   26  vim cmds.log

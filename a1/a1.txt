@@ -1,0 +1,97 @@
+Assignmnet 1
+Tanmay Singh
+ID: 015965196
+
+
+Task 1:
+
+Here is the output of the alias l command:
+
+alias l='ls -ltr'
+
+and here is the output of the alias command l in my homedirectory:
+
+command: l >> cs131/a1/a1.txt
+
+total 439620
+-rw-rw-r-- 1 tanmay_singh tanmay_singh 450156048 Jan 19 07:24 2019-01-h1.csv
+drwxrwxr-x 2 tanmay_singh tanmay_singh      4096 Feb  7 00:38 classwork
+drwxrwxr-x 6 tanmay_singh tanmay_singh      4096 Feb 17 23:03 cs131
+
+Here is the output of the alias w command:
+
+alias w='ls -l | wc'
+
+and here is the output of the w command:
+
+command: w >> cs131/a1/a1.txt
+
+Output:
+      4      29     230
+
+Task 2:
+
+a) for part I just used the mkdir command to make a directory and the two
+   pairs of locations I have chosen are (To, From) : 1. (151.0, 239.0) 2. (229.0, 7.0)
+  
+   command: mkdir FARE
+
+b) for this part I had to redirect all the fare amounts to two different files, 
+   the commands worked correctly and the files are named as per the instructions.
+
+commands: 
+grep ',151.0,239.0,' ~/2019-01-h1.csv | cut -d',' -f11 > FARE/151.0-239.0.txt
+grep ',229.0,7.0,' ~/2019-01-h1.csv | cut -d',' -f11 > FARE/229.0-7.0.txt
+
+The files are in the FARE directory and show all the fair amounts you can cd into fare
+and check
+
+c) Calculating Averages
+
+file 1: 151.0-239.0.txt
+
+Command:
+total=$(paste -sd+ 151.0-239.0.txt | bc -l)
+count=$(wc -l < 151.0-239.0.txt)
+echo "scale=2; $total / $count" | bc -l >> ~/cs131/a1/a1.txt
+
+Output:
+
+6.64 
+
+file 2: 229.0-7.0.txt  
+
+command:
+total=$(paste -sd+ 229.0-7.0.txt | bc -l)
+count=$(wc -l < 229.0-7.0.txt)
+echo "scale=2; $total / $count" | bc -l >> ~/cs131/a1/a1.txt
+
+Output:
+
+13.75
+
+d)the highest total amount paid by customers who were picked up on January 10, 2019 is:
+
+Command:
+grep '2019-01-10' ~/2019-01-h1.csv | cut -d',' -f17 | sort -nr | head -1 >> a1.txt 
+
+Output:
+
+36090.3 
+
+e)Among the rides with three or more customers, the 10 most popular dropoff locations in the dataset.
+
+output:
+
+ 139587 236.0
+ 122000 237.0
+ 118629 161.0
+ 100132 48.0
+  99995 170.0
+  95640 230.0
+  94008 162.0
+  87950 142.0
+  86000 239.0
+  85495 141.0
+
+
