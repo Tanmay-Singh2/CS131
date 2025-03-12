@@ -1,0 +1,66 @@
+#!/bin/bash
+# command.sh - sort_files Command
+# This script implements the 'sort_files' command.
+# When given a file, it sorts the file's contents line-by-line.
+# When given a directory, it organizes files into subdirectories
+# based on file extension, creating folders like txt_files or html_files.
+#
+# Usage:
+#   sort_files <path>
+#
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+if [ -f "$SCRIPT_DIR/README.md" ]; then
+    EXPECTED_NAME=$(grep '^CommandName:' "$SCRIPT_DIR/README.md" | awk -F':' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}')
+    if [ -n "$EXPECTED_NAME" ] && [ "$(basename "$0")" != "$EXPECTED_NAME" ]; then
+        echo "Error: This script must be executed as '$EXPECTED_NAME'."
+        exit 1
+    fi
+fi
+
+# Get the input path from command-line argument; if not provided, prompt the user.
+if [ -z "$1" ]; then
+    read -p "Enter the path of the file or directory: " INPUT_PATH
+else
+    INPUT_PATH="$1"
+fi
+
+# Check if the provided path exists.
+if [ ! -e "$INPUT_PATH" ]; then
+    echo "Error: The path '$INPUT_PATH' does not exist."
+    exit 1
+fi
+
+if [ -f "$INPUT_PATH" ]; then
+    TMP_FILE=$(mktemp)
+    sort "$INPUT_PATH" > "$TMP_FILE"
+    mv "$TMP_FILE" "$INPUT_PATH"
+    echo "Sorted the file '$INPUT_PATH' by lines."
+
+elif [ -d "$INPUT_PATH" ]; then
+    cd "$INPUT_PATH" || { echo "Error: Could not change directory to '$INPUT_PATH'."; exit 1; }
+
+    for file in *; do
+        if [ -d "$file" ]; then
+            continue
+        fi
+        if [ -f "$file" ]; then
+            if [[ "$file" == *.* ]]; then
+                ext="${file##*.}"
+                ext=$(echo "$ext" | tr '[:upper:]' '[:lower:]')
+            else
+                ext="unknown"
+            fi
+            target_folder="${ext}_files"
+            if [ ! -d "$target_folder" ]; then
+                mkdir "$target_folder"
+            fi
+            mv "$file" "$target_folder/"
+            echo "Moved '$file' to '$target_folder/'"
+        fi
+    done
+    echo "Organized files in the directory '$INPUT_PATH' by file extension."
+else
+    echo "Error: '$INPUT_PATH' is neither a file nor a directory."
+    exit 1
+fi
+
