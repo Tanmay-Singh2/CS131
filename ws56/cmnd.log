@@ -1,0 +1,21 @@
+    1  ls
+    2  sed -n '/^[[:space:]]*2\.0,/p' ~/2019-01-h1.csv > vendor2.csv
+    3  ls
+    4  wc -l vendor2.csv
+    5  sed 's/[:\"-]//g' ~/2019-01-h1.csv > no-separators.csv
+    6  head -10 no-separators.csv
+    7  sed 's/\.[0-9]\+//g' no-separators.csv > no-fractions.csv
+    8  head -10 no-fractions.csv
+    9  wc vendor2.csv > ws56.txt
+   10  echo "-----" >> ws56.txt
+   11  head -10 no-separators.csv >> ws56.txt
+   12  echo "-----" >> ws56.txt
+   13  head -10 no-fractions.csv >> ws56.txt
+   14  cat ws56.txt
+   16  ls
+   17  awk -F, 'NR > 1 && $17 >= 10 { freq[$14]++ } END { for (tip in freq) print tip, freq[tip] }' ~/2019-01-h1.csv >> ws56.txt
+   18  echo "-----" >> ws56.txt
+   19  echo "Part 2 number 2" >> ws56.txt
+   20  awk -F, 'NR > 1 { tip[$14]++ } END { for (t in tip) print t, tip[t] }' ~/2019-01-h1.csv | sort -k2,2nr | head -20 >> ws56.txt
+   21  vim ws56.txt
+   22  history >> cmnd.log
