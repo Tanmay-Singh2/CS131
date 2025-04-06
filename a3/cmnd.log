@@ -1,0 +1,8 @@
+    1  cd cs131
+    2  mkdir a3
+    3  cd a3
+    4  vim grades.csv
+    5  vim grader.awk
+    6  awk -f grader.awk grades.csv > a3.txt
+    7  cat a3.txt
+    8  history > cmnd.log
