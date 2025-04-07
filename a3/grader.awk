@@ -18,49 +18,55 @@ function calculate_average(total, count) {
         next;
     }
 
-    id = $1;      
-    name = $2;      
+    id = $1;
+    name = $2;
 
-    total = 0;      
+    names[id] = name;
 
-    # Sum all grade fields 
+    total = 0;
+
+    # Task 1, storing the totals in associative array
     for (i = 3; i <= NF; i++) {
         total += $i;
     }
 
-    scores[name] = total;                          
-    avg = calculate_average(total, NF - 2);        
-    averages[name] = avg;                          
+    scores[id] = total;
+    averages[id] = calculate_average(total, NF - 2);
 
-    # Determine pass or fail status 
-    if (avg >= 70) {
-        status[name] = "Pass";
+    # Determine pass or fail (Task 2)
+    if (averages[id] >= 70) {
+        status[id] = "Pass";
     } else {
-        status[name] = "Fail";
+        status[id] = "Fail";
     }
 
-    # Track the highest and lowest scorers
+    # Track the highest and lowest scoring students (Task 3)
     if (NR == 2 || total > max_score) {
         max_score = total;
-        top_student = name;
+        top_student = id;
     }
 
     if (NR == 2 || total < min_score) {
         min_score = total;
-        low_student = name;
+        low_student = id;
     }
 }
 
 END {
-    for (student in scores) {
-        printf "Name: %s\n", student;
-        printf "Total Score: %d\n", scores[student];
-        printf "Average Score: %.2f\n", averages[student];
-        printf "Status: %s\n\n", status[student];
+    # Print results as speciefied in Task 4
+    for (i = 101; i <= 999; i++) {
+        if (i in scores) {
+            printf "Name: %s\n", names[i];
+            printf "Total Score: %d\n", scores[i];
+            printf "Average Score: %.2f\n", averages[i];
+            printf "Status: %s\n\n", status[i];
+        }
     }
 
+    # Task 5, printing the highest and lowest scoring students
     print "-------------------------------"
     print "Top and Lowest Scoring Students\n"
-    printf "Top Scorer: %s with %d points\n", top_student, max_score;
-    printf "Lowest Scorer: %s with %d points\n", low_student, min_score;
+    printf "Top Scorer: %s with %d points\n", names[top_student], max_score;
+    printf "Lowest Scorer: %s with %d points\n", names[low_student], min_score;
 }
+
