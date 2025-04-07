@@ -54,13 +54,11 @@ function calculate_average(total, count) {
 
 END {
     # Print results as speciefied in Task 4
-    for (i = 101; i <= 999; i++) {
-        if (i in scores) {
-            printf "Name: %s\n", names[i];
-            printf "Total Score: %d\n", scores[i];
-            printf "Average Score: %.2f\n", averages[i];
-            printf "Status: %s\n\n", status[i];
-        }
+    for (id in scores) {
+        printf "Name: %s\n", names[id];
+        printf "Total Score: %d\n", scores[id];
+        printf "Average Score: %.2f\n", averages[id];
+        printf "Status: %s\n\n", status[id];
     }
 
     # Task 5, printing the highest and lowest scoring students
@@ -69,4 +67,3 @@ END {
     printf "Top Scorer: %s with %d points\n", names[top_student], max_score;
     printf "Lowest Scorer: %s with %d points\n", names[low_student], min_score;
 }
-
