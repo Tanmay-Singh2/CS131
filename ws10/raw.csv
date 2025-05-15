@@ -1,0 +1,10 @@
+id,name,age,email,score
+101,Liam,21,liam@example.com,90
+102,Eva,,eva@example.com,92
+103,Zane,24,zane@example.com,
+104,Aria,22,aria@example.com,87
+105,Kai,20,kai@example.com,85
+106,Maya,,maya@example.com,
+107,Jasper,25,jasper@example.com,91
+108,Leo,23,leo@example.com,
+109,Sienna,26,sienna@example.com,89
